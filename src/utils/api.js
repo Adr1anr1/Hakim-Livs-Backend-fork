@@ -7,7 +7,7 @@ export function getBaseUrl() {
     const group = match[1];
     return `https://grupp-11-backend.vercel.app/`;
   }
-  return "http://localhost:3000/";
+  return "https://grupp-11-backend.vercel.app/";
 }
 
 export async function fetchProducts(endpoint = "api/products") {
