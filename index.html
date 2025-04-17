@@ -19,9 +19,8 @@
           <input class="search"  maxlength="30" type="text" placeholder="Sök..."></input>
         </div>
         <ul class="nav-links">
-          <li><a href="products.html"><img src="assets/logos/savings.svg">Förmåner</a></li>
           <li><a href="HTML/login.html"><img src="assets/logos/user.svg">Logga in</a></li>
-          <li id="tillKassa"><a href="varukorg.html" class="cart">
+          <li id="tillKassa"><a href="javascript:void(0)" onclick="checkCartStatus()" class="cart">
             <img src="assets/logos/basket.svg" alt="">
             <div class="text">
               <p class="toCart">Till varukorg</p>
@@ -67,7 +66,7 @@
           </div>
           <div class="flex-end">
             <p class="bigger"><span>Adress:</span> Östgötagatan 12, 116 25, Stockholm</p>
-            <p class="bigger"><span>Telefonumer:</span> +46 76 112 11 11</p>
+            <p class="bigger"><span>Telefonummer:</span> +46 76 112 11 11</p>
             <p class="bigger"><span>Mail:</span> Hakim@hakimLivs.se </p>
           </div>
         </div>
@@ -77,5 +76,15 @@
 
     <!-- PAGE-SPECIFIC JAVASCRIPT -->
     <script type="module" src="src/scripts/index.js" defer></script>
+    <script>
+      function checkCartStatus() {
+        const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+        if (!cart || cart.length === 0) {
+          alert("Din kundvagn är tom. Välj produkter för att gå vidare till kassan.");
+        } else {
+          window.location.href = 'varukorg.html';
+        }
+      }
+    </script>
   </body>
 </html>
