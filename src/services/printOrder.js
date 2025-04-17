@@ -21,11 +21,11 @@ export function printOrder() {
       li.append(div);
       const title = document.createElement("p");
       title.classList.add("title");
-      title.innerText = `${product.amount}st ${product.namn}`;
+      title.innerText = `${product.amount} st ${product.namn}`;
       // title.style.fontWeight = "bold";
       const price = document.createElement("p");
       price.classList.add("price");
-      price.innerText = `${product.amount}st x ${product.pris} kr`;
+      price.innerText = `${product.amount} st x ${product.pris.toFixed(2).replace(".", ",")} kr`;
       div.append(title, price);
 
       sumProducts += product.pris * product.amount;
@@ -43,7 +43,7 @@ export function printOrder() {
     sumTitle.innerText = "Summa varor";
     let sum = document.createElement("p");
     sum.classList.add("sum");
-    sum.innerText = `${sumProducts.toFixed(2)} kr`;
+    sum.innerText = `${sumProducts.toFixed(2).replace(".", ",")} kr`;
     sumCont.append(sumTitle, sum);
 
     let deliverCont = document.createElement("div");
@@ -64,7 +64,7 @@ export function printOrder() {
     totalTitle.innerText = `Totalsumma: `;
     let total = document.createElement("p");
     total.classList.add("total");
-    total.innerText = `${totalPriceSum.toFixed(2)} kr`;
+    total.innerText = `${totalPriceSum.toFixed(2).replace(".", ",")} kr`;
     totalCont.append(totalTitle, total);
 
     let momsCont = document.createElement("div");
@@ -74,15 +74,13 @@ export function printOrder() {
     momsTitle.innerText = "Moms (12%)";
     let moms = document.createElement("p");
     moms.classList.add("moms");
-    moms.innerText = `${((sumProducts + 59) * 0.12).toFixed(2)} kr`;
+    moms.innerText = `${((sumProducts + 59) * 0.12).toFixed(2).replace(".", ",")} kr`;
     momsCont.append(momsTitle, moms);
 
     const payment = document.createElement("div");
     payment.classList.add("payment");
     const paymentTitle = document.createElement("p");
-    paymentTitle.innerHTML = `Vänligen Swisha <span class="bold">${totalPriceSum.toFixed(
-      2
-    )} kr</span> till <span class="italic">+46 70 123 45 67</span>!`;
+    paymentTitle.innerHTML = `Tack för din beställning! Vänligen swisha <span class="bold">${totalPriceSum.toFixed(2).replace(".", ",")} kr</span> till <span class="italic">+46 70 123 45 67</span>. Vi levererar snarast därefter och sms:ar innan`;
     payment.append(paymentTitle);
 
     priceDiv.append(sumCont, deliverCont, totalCont, momsCont);
