@@ -18,38 +18,38 @@
   }
   .background {
     padding: 40px 60px;
-    padding-bottom: 60px;
+    padding-bottom: 120px;
     max-width: 1200px;
     width: 90%;
     max-height: 95vh;
-    overflow-y: auto;
+    overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 40px;
+    gap: 30px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     @media (max-width: 1020px) {
       max-width: 540px;
       padding: 30px 30px;
-      padding-bottom: 50px;
+      padding-bottom: 100px;
       box-sizing: border-box;
     }
     
     @media (max-height: 750px) {
       max-height: 95vh;
       padding: 25px 30px;
-      padding-bottom: 40px;
-      gap: 30px;
+      padding-bottom: 100px;
+      gap: 20px;
     }
     
     @media (max-width: 600px) {
       padding: 25px 20px;
-      padding-bottom: 40px;
+      padding-bottom: 100px;
       width: 95%;
-      gap: 30px;
+      gap: 20px;
     }
 
     &.red {
@@ -102,10 +102,32 @@
       flex-wrap: nowrap;
       justify-content: space-between;
       width: 100%;
+      max-height: 75vh;
+      overflow-y: auto;
+      
+      // Anpassa utseendet på scrollbaren
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      &::-webkit-scrollbar-track {
+        background: rgba(240, 240, 240, 0.5);
+        border-radius: 4px;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: rgba(0, 30, 98, 0.4);
+        border-radius: 4px;
+      }
+      
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 30, 98, 0.6);
+      }
       
       @media (max-width: 768px) {
         flex-direction: column;
         gap: 30px;
+        max-height: 65vh;
       }
 
       .orderHeading,
@@ -216,11 +238,14 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
+        max-height: 100%;
+        overflow-y: auto;
+        
+        @media (max-width: 768px) {
+          flex: 1 1 auto;
+        }
 
         .obligatoriskt {
-          // position: absolute;
-          // top: 0px;
-          // right: 20px;
           padding: 0px;
           margin: 0px;
           font-style: italic;
@@ -237,8 +262,7 @@
           border-radius: 8px;
           background: rgba($color: #ecedee, $alpha: 0.3);
           box-sizing: border-box;
-          // flex-wrap: wrap;
-
+          
           @media (max-height: 1025px) and (min-width: 1020px) {
             flex-direction: row;
             justify-content: flex-start;
@@ -315,8 +339,10 @@
       width: 100%;
       max-width: 400px;
       height: 40px;
-      // font-weight: 700;
-      // font-style: italic;
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
       color: white;
       background: rgb(36 38 204);
       border-style: solid;
@@ -338,31 +364,12 @@
 
       &:hover {
         box-shadow: 2px 2px 0px #001e62;
-        transform: translate(2px, 2px);
+        transform: translate(-50%, 2px);
       }
       &:active {
         box-shadow: 0px 0px 0px #001e62;
-        transform: translate(4px, 4px);
+        transform: translate(-50%, 4px);
       }
-    }
-
-    // Anpassa utseendet på scrollbaren
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-    
-    &::-webkit-scrollbar-track {
-      background: rgba(240, 240, 240, 0.5);
-      border-radius: 4px;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background: rgba(0, 30, 98, 0.4);
-      border-radius: 4px;
-    }
-    
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgba(0, 30, 98, 0.6);
     }
   }
 }
