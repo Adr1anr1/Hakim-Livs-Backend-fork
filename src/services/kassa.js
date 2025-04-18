@@ -18,15 +18,41 @@ function printProducts(namn, bild, amount){
     <p>${namn}</p>
     <div class="row">
         <button class="minus">-</button>
-        <input type="number" value="${amount}" max="50">
+        <input type="number" value="${amount}" max="50" min="1">
         <button class="plus">+</button>
     </div>
     <p class="productsPrice"></p>
     <button class="removeItem red">x</button>
     `
+
     product.querySelector(".plus").addEventListener("click", ()=>{plus(product,namn)})
     product.querySelector(".minus").addEventListener("click", ()=>{minus(product,namn)})
-    product.querySelector("input").addEventListener("change", ()=>{updateFromInput(product, namn)});
+    
+    const input = product.querySelector("input");
+    
+    // Hantera både change och input events
+    input.addEventListener("input", function(e) {
+        // Tillåt endast siffror
+        let value = this.value.replace(/[^\d]/g, '');
+        
+        // Om värdet är ogiltigt (tomt eller 0), sätt det till 1
+        if (!value || parseInt(value) === 0) {
+            value = '1';
+        }
+        
+        // Om värdet är över max, sätt det till max
+        if (parseInt(value) > 50) {
+            value = '50';
+            alert("Max antal per vara är 50 st");
+        }
+        
+        // Uppdatera input-fältet
+        this.value = value;
+        
+        // Uppdatera varukorgen
+        updateFromInput(product, namn);
+    });
+
     product.querySelector(".removeItem").addEventListener("click", ()=>{removeProduct(namn)});
 
     countProductPrice(product, namn);
@@ -73,13 +99,16 @@ function minus(product, namn) {
 }
 
 function updateFromInput(product, namn){
-    let value = parseInt(product.querySelector("input").value);
-    if (value < 1) {
-        value = 1;
-    }
+    let input = product.querySelector("input");
+    let value = input.value.replace(/[^\d]/g, ''); // Ta bort alla icke-siffror
+    
+    // Konvertera till nummer och validera
+    value = parseInt(value) || 1; // Om parsing misslyckas, använd 1
+    
+    if (value < 1) value = 1;
     if (value > 50) {
-        alert("Max tillåtna köp på denna vara är 50 st");
         value = 50;
+        alert("Max antal per vara är 50 st");
     }
     
     // Update the amount in sessionStorage
@@ -91,7 +120,7 @@ function updateFromInput(product, namn){
     sessionStorage.setItem('cart', JSON.stringify(products));
 
     // Update the input field to show the new amount
-    product.querySelector("input").value = productToUpdate.amount;
+    input.value = value;
     countProducts();
     countProductPrice(product, namn);
     countTotalPrice();
