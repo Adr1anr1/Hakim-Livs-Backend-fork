@@ -60,8 +60,8 @@ export function showProductsAdmin(products) {
       const form = document.getElementById("addProductsForm");
       form.style.display = "flex";
 
-      // Direkt scroll till toppen av formuläret
-      form.scrollIntoView();
+      // Scrolla till toppen av sidan istället för till formuläret
+      window.scrollTo(0, 0);
 
       document.getElementById("name").value = product.namn;
       document.getElementById("info").value = product.beskrivning;
