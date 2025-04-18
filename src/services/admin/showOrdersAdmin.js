@@ -81,8 +81,8 @@ export function showOrdersAdmin(orders) {
     showBtn.addEventListener("click", () => {
       showingProductCont.innerHTML = "";
 
-      // Scrolla till toppen av beställningsvisningen
-      showingProductCont.scrollIntoView();
+      // Scrolla till toppen av sidan
+      window.scrollTo(0, 0);
 
       const productsContainer = document.createElement("div");
       productsContainer.classList.add("productsContainer");
