@@ -13,7 +13,6 @@ export function printOrderForm() {
 
     if (clickedOutsidePopup && container.contains(formArea)) {
       container.removeChild(formArea);
-      document.body.style.overflow = "";
       reloadCart();
     }
   });
@@ -22,7 +21,6 @@ export function printOrderForm() {
   if (!order) {
     return;
   }
-  document.body.style.overflow = "hidden";
   const formContainer = document.createElement("div");
   formContainer.id = "formContainer";
   const form = document.createElement("form");
@@ -68,10 +66,8 @@ export function printOrderForm() {
   closeBtn.innerText = "X";
   closeBtn.addEventListener("click", () => {
     if (container.contains(formArea)) {
-      document.body.style.overflow = "";
       reloadCart();
       container.removeChild(formArea);
-      location.reload();
     }
   });
 
