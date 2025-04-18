@@ -12,6 +12,7 @@
   justify-content: center;
   align-items: center;
   pointer-events: all; /* absorbs clicks */
+  overflow: auto; /* Tillåt scrollning inom formArea */
 
   h2 {
     margin-top: 0px;
@@ -21,8 +22,7 @@
     padding-bottom: 120px;
     max-width: 1200px;
     width: 90%;
-    max-height: 95vh;
-    overflow: hidden;
+    max-height: unset; /* Ta bort max-height begränsning */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -31,6 +31,8 @@
     gap: 30px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
+    margin: 20px 0; /* Lägg till lite margin så den inte fyller hela skärmen */
+    
     @media (max-width: 1020px) {
       max-width: 540px;
       padding: 30px 30px;
@@ -39,7 +41,6 @@
     }
     
     @media (max-height: 750px) {
-      max-height: 95vh;
       padding: 25px 30px;
       padding-bottom: 100px;
       gap: 20px;
@@ -102,8 +103,7 @@
       flex-wrap: nowrap;
       justify-content: space-between;
       width: 100%;
-      max-height: 75vh;
-      overflow-y: auto;
+      max-height: unset; /* Ta bort max-height för att undvika dubbel scrollning */
       
       // Anpassa utseendet på scrollbaren
       &::-webkit-scrollbar {
@@ -127,7 +127,6 @@
       @media (max-width: 768px) {
         flex-direction: column;
         gap: 30px;
-        max-height: 65vh;
       }
 
       .orderHeading,
@@ -238,8 +237,7 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
-        max-height: 100%;
-        overflow-y: auto;
+        max-height: unset; /* Ta bort max-height begränsning */
         
         @media (max-width: 768px) {
           flex: 1 1 auto;
@@ -339,10 +337,10 @@
       width: 100%;
       max-width: 400px;
       height: 40px;
-      position: absolute;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%);
+      position: relative; /* Ändrad från absolute för att undvika positioneringsproblem */
+      margin-top: 20px; /* Lägg till margin istället */
+      left: unset; /* Ta bort left positioning */
+      transform: none; /* Ta bort transform */
       color: white;
       background: rgb(36 38 204);
       border-style: solid;
@@ -364,11 +362,11 @@
 
       &:hover {
         box-shadow: 2px 2px 0px #001e62;
-        transform: translate(-50%, 2px);
+        transform: translateY(2px);
       }
       &:active {
         box-shadow: 0px 0px 0px #001e62;
-        transform: translate(-50%, 4px);
+        transform: translateY(4px);
       }
     }
   }
