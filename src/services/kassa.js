@@ -30,10 +30,20 @@ function printProducts(namn, bild, amount){
     
     const input = product.querySelector("input");
     
+    // Förhindra plus/minus från tangentbordet
+    input.addEventListener("keydown", function(e) {
+        if (e.key === '+' || e.key === '-' || e.key === 'e') {
+            e.preventDefault();
+        }
+    });
+    
     // Hantera input medan användaren skriver
     input.addEventListener("input", function(e) {
         // Tillåt endast siffror
-        this.value = this.value.replace(/[^\d]/g, '');
+        let currentValue = this.value.replace(/[^\d]/g, '');
+        if (currentValue !== this.value) {
+            this.value = currentValue;
+        }
     });
 
     // Hantera ändringar när användaren är klar med inmatningen
