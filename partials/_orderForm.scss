@@ -12,27 +12,46 @@
   justify-content: center;
   align-items: center;
   pointer-events: all; /* absorbs clicks */
+  overflow: hidden; /* Ta bort scrollning på formArea */
 
   h2 {
     margin-top: 0px;
   }
   .background {
     padding: 40px 60px;
+    padding-bottom: 120px;
     max-width: 1200px;
     width: 90%;
-    max-height: 90vh;
-    overflow: hidden;
+    height: auto; /* Automatisk höjd baserad på innehåll */
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 60px;
+    justify-content: flex-start;
+    gap: 30px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
+    margin: 20px 0; /* Lägg till lite margin så den inte fyller hela skärmen */
+    overflow: visible; /* Gör att innehållet visas även om det går utanför container */
+    
     @media (max-width: 1020px) {
       max-width: 540px;
+      padding: 30px 30px;
+      padding-bottom: 100px;
       box-sizing: border-box;
+    }
+    
+    @media (max-height: 750px) {
+      padding: 25px 30px;
+      padding-bottom: 100px;
+      gap: 20px;
+    }
+    
+    @media (max-width: 600px) {
+      padding: 25px 20px;
+      padding-bottom: 100px;
+      width: 95%;
+      gap: 20px;
     }
 
     &.red {
@@ -85,8 +104,18 @@
       flex-wrap: nowrap;
       justify-content: space-between;
       width: 100%;
-      overflow-y: auto;
-      max-height: 80vh;
+      height: auto; /* Automatisk höjd baserad på innehåll */
+      overflow: visible; /* Ta bort scrollning på productsOrderCont */
+      
+      // Ta bort scrollbar-relaterade stilar
+      &::-webkit-scrollbar {
+        display: none; /* Dölj scrollbar */
+      }
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 30px;
+      }
 
       .orderHeading,
       .deliveryTitle {
@@ -196,11 +225,13 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
+        overflow: visible; /* Ta bort scrollning på formContainer */
+        
+        @media (max-width: 768px) {
+          flex: 1 1 auto;
+        }
 
         .obligatoriskt {
-          // position: absolute;
-          // top: 0px;
-          // right: 20px;
           padding: 0px;
           margin: 0px;
           font-style: italic;
@@ -217,8 +248,7 @@
           border-radius: 8px;
           background: rgba($color: #ecedee, $alpha: 0.3);
           box-sizing: border-box;
-          // flex-wrap: wrap;
-
+          
           @media (max-height: 1025px) and (min-width: 1020px) {
             flex-direction: row;
             justify-content: flex-start;
@@ -295,8 +325,10 @@
       width: 100%;
       max-width: 400px;
       height: 40px;
-      // font-weight: 700;
-      // font-style: italic;
+      position: relative; /* Behåll relativ positionering */
+      margin-top: 20px;
+      left: unset;
+      transform: none;
       color: white;
       background: rgb(36 38 204);
       border-style: solid;
@@ -318,11 +350,11 @@
 
       &:hover {
         box-shadow: 2px 2px 0px #001e62;
-        transform: translate(2px, 2px);
+        transform: translateY(2px);
       }
       &:active {
         box-shadow: 0px 0px 0px #001e62;
-        transform: translate(4px, 4px);
+        transform: translateY(4px);
       }
     }
   }
