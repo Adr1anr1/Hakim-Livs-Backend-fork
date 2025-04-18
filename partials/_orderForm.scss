@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
   pointer-events: all; /* absorbs clicks */
-  overflow: auto; /* Tillåt scrollning inom formArea */
+  overflow: hidden; /* Ta bort scrollning på formArea */
 
   h2 {
     margin-top: 0px;
@@ -22,7 +22,7 @@
     padding-bottom: 120px;
     max-width: 1200px;
     width: 90%;
-    max-height: unset; /* Ta bort max-height begränsning */
+    height: auto; /* Automatisk höjd baserad på innehåll */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -32,6 +32,7 @@
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     margin: 20px 0; /* Lägg till lite margin så den inte fyller hela skärmen */
+    overflow: visible; /* Gör att innehållet visas även om det går utanför container */
     
     @media (max-width: 1020px) {
       max-width: 540px;
@@ -103,25 +104,12 @@
       flex-wrap: nowrap;
       justify-content: space-between;
       width: 100%;
-      max-height: unset; /* Ta bort max-height för att undvika dubbel scrollning */
+      height: auto; /* Automatisk höjd baserad på innehåll */
+      overflow: visible; /* Ta bort scrollning på productsOrderCont */
       
-      // Anpassa utseendet på scrollbaren
+      // Ta bort scrollbar-relaterade stilar
       &::-webkit-scrollbar {
-        width: 8px;
-      }
-      
-      &::-webkit-scrollbar-track {
-        background: rgba(240, 240, 240, 0.5);
-        border-radius: 4px;
-      }
-      
-      &::-webkit-scrollbar-thumb {
-        background: rgba(0, 30, 98, 0.4);
-        border-radius: 4px;
-      }
-      
-      &::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 30, 98, 0.6);
+        display: none; /* Dölj scrollbar */
       }
       
       @media (max-width: 768px) {
@@ -237,7 +225,7 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
-        max-height: unset; /* Ta bort max-height begränsning */
+        overflow: visible; /* Ta bort scrollning på formContainer */
         
         @media (max-width: 768px) {
           flex: 1 1 auto;
@@ -337,10 +325,10 @@
       width: 100%;
       max-width: 400px;
       height: 40px;
-      position: relative; /* Ändrad från absolute för att undvika positioneringsproblem */
-      margin-top: 20px; /* Lägg till margin istället */
-      left: unset; /* Ta bort left positioning */
-      transform: none; /* Ta bort transform */
+      position: relative; /* Behåll relativ positionering */
+      margin-top: 20px;
+      left: unset;
+      transform: none;
       color: white;
       background: rgb(36 38 204);
       border-style: solid;
