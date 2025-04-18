@@ -81,6 +81,11 @@ export function showProductsAdmin(products) {
       document.getElementById("image").value = product.bild;
       document.getElementById("supplier").value =
         product.leverantor?.namn || "";
+      
+      // Säkerställ att näringsvärdet laddas in vid redigering
+      if (product.naringsvarde) {
+        document.getElementById("nutrition").value = product.naringsvarde;
+      }
 
       sessionStorage.setItem("editProductId", product._id);
 

@@ -73,7 +73,12 @@ export function printProductsAdminpage() {
   const fields2 = [
     { label: "Mängd:", id: "ammount", name: "ammount" },
     { label: "Varumärke:", id: "brand", name: "brand" },
-    { label: "Innehållsförteckning:", id: "content", name: "content" },
+    { 
+      label: "Innehållsförteckning:", 
+      id: "content", 
+      name: "content", 
+      type: "textarea" 
+    },
     {
       label: "Jämförelsepris:",
       type: "number",
@@ -88,6 +93,7 @@ export function printProductsAdminpage() {
       label: "Näringsvärde:", 
       id: "nutrition", 
       name: "nutrition", 
+      type: "textarea",
       required: false 
     },
   ];
@@ -97,8 +103,12 @@ export function printProductsAdminpage() {
     lbl.setAttribute("for", attrs.id);
     lbl.textContent = label;
 
-    const input = document.createElement("input");
-    input.type = type;
+    const input = type === "textarea" 
+      ? document.createElement("textarea") 
+      : document.createElement("input");
+    
+    if (type !== "textarea") input.type = type;
+    
     Object.entries(attrs).forEach(([k, v]) => input.setAttribute(k, v));
     input.required = required;
 
