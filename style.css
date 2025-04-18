@@ -1106,11 +1106,17 @@ div.marginTB {
   justify-content: center;
   align-items: center;
   pointer-events: all; /* absorbs clicks */
+  overflow: auto; /* Lägger till scrollning vid behov */
 }
 #formArea h2 {
   margin-top: 0px;
 }
 #formArea .background {
+  padding: 40px 60px;
+  max-width: 1200px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto; /* Tillåter vertikal scrollning inom formuläret */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1118,11 +1124,9 @@ div.marginTB {
   justify-content: center;
   gap: 60px;
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 40px 120px;
   border-radius: 10px;
-}
-@media (max-width: 1020px) {
-  #formArea .background {
+  margin: 20px 0; /* Lägger till marginal ovan och nedan */
+  @media (max-width: 1020px) {
     max-width: 540px;
     box-sizing: border-box;
   }
@@ -1166,9 +1170,12 @@ div.marginTB {
 }
 #formArea .background .productsOrderCont {
   display: flex;
-  gap: 120px;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 40px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+  overflow-y: auto;
+  max-height: 80vh;
 }
 #formArea .background .productsOrderCont .orderHeading,
 #formArea .background .productsOrderCont .deliveryTitle {
