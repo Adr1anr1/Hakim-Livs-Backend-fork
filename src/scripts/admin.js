@@ -189,10 +189,12 @@ const printproductsAddEventlisteners = () => {
       bild: document.getElementById("image").value,
     };
     
-    // Lägg till näringsvärde endast om det finns ett värde
+    // Hantera näringsvärde - explicit sätta det till null om det är tomt
     const nutritionValue = document.getElementById("nutrition").value;
     if (nutritionValue) {
       productData.naringsvarde = nutritionValue;
+    } else {
+      productData.naringsvarde = null; // Explicit sätta till null för att ta bort värdet
     }
     
     const editId = sessionStorage.getItem("editProductId");
