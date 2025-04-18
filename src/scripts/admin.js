@@ -84,9 +84,15 @@ export function printProductsAdminpage() {
       max: "9999",
     },
     { label: "Leverantör:", id: "supplier", name: "supplier" },
+    { 
+      label: "Näringsvärde:", 
+      id: "nutrition", 
+      name: "nutrition", 
+      required: false 
+    },
   ];
 
-  fields2.forEach(({ label, type = "text", ...attrs }) => {
+  fields2.forEach(({ label, type = "text", required = true, ...attrs }) => {
     const lbl = document.createElement("label");
     lbl.setAttribute("for", attrs.id);
     lbl.textContent = label;
@@ -94,7 +100,7 @@ export function printProductsAdminpage() {
     const input = document.createElement("input");
     input.type = type;
     Object.entries(attrs).forEach(([k, v]) => input.setAttribute(k, v));
-    input.required = true;
+    input.required = required;
 
     formPart2.append(lbl, input);
   });
@@ -172,6 +178,13 @@ const printproductsAddEventlisteners = () => {
       leverantor: document.getElementById("supplier").value,
       bild: document.getElementById("image").value,
     };
+    
+    // Lägg till näringsvärde endast om det finns ett värde
+    const nutritionValue = document.getElementById("nutrition").value;
+    if (nutritionValue) {
+      productData.naringsvarde = nutritionValue;
+    }
+    
     const editId = sessionStorage.getItem("editProductId");
 
     try {
@@ -268,4 +281,42 @@ ordersBtn.addEventListener("click", () => {
   searchfield.style.visibility = "hidden";
   ordersBtn.className = "";
   productsBtn.className = "notActive";
+});
+
+//EDIT
+editBtn.addEventListener("click", () => {
+  const form = document.getElementById("addProductsForm");
+  form.style.display = "flex";
+
+  // Scrolla till toppen av sidan istället för till formuläret
+  window.scrollTo(0, 0);
+
+  document.getElementById("name").value = product.namn;
+  document.getElementById("info").value = product.beskrivning;
+  document.getElementById("price").value = product.pris;
+  document.getElementById("category").value = product.kategorier
+    .map((k) => k.namn)
+    .join(", ");
+  document.getElementById("ammount").value = product.mangd || "";
+  document.getElementById("brand").value = product.varumarke?.namn || "";
+  document.getElementById("content").value =
+    product.innehallsforteckning || "";
+  document.getElementById("compare").value = product.jamforpris
+    ? parseFloat(
+        String(product.jamforpris).replace(" kr/kg", "").replace(",", ".")
+      )
+    : "";
+  document.getElementById("image").value = product.bild;
+  document.getElementById("supplier").value =
+    product.leverantor?.namn || "";
+  document.getElementById("nutrition").value = product.naringsvarde || "";
+
+  sessionStorage.setItem("editProductId", product._id);
+
+  //update button to show edit mode
+  document.querySelector(".submitBtnDiv button").textContent =
+    "Spara ändringar";
+  const toggleFormBtn = (document.getElementById(
+    "showFormBtn"
+  ).textContent = "Göm formulär");
 });

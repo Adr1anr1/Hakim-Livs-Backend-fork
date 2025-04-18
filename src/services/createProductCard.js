@@ -124,6 +124,7 @@ import { productList } from "../../tempTestData/products.js";
        <div><p class="bold">Innehållsförteckning</p><p>${
          product.innehallsforteckning
        }</p></div>
+       ${product.naringsvarde ? `<div><p class="bold">Näringsvärde</p><p>${product.naringsvarde}</p></div>` : ''}
      </div>
    `;
  
