@@ -30,10 +30,16 @@ function printProducts(namn, bild, amount){
     
     const input = product.querySelector("input");
     
-    // Hantera både change och input events
+    // Hantera input medan användaren skriver
     input.addEventListener("input", function(e) {
         // Tillåt endast siffror
-        let value = this.value.replace(/[^\d]/g, '');
+        this.value = this.value.replace(/[^\d]/g, '');
+    });
+
+    // Hantera ändringar när användaren är klar med inmatningen
+    input.addEventListener("blur", function(e) {
+        // Validera värdet när fältet lämnas
+        let value = this.value;
         
         // Om värdet är ogiltigt (tomt eller 0), sätt det till 1
         if (!value || parseInt(value) === 0) {
@@ -51,6 +57,13 @@ function printProducts(namn, bild, amount){
         
         // Uppdatera varukorgen
         updateFromInput(product, namn);
+    });
+
+    // Hantera Enter-tangenten
+    input.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            this.blur(); // Trigga blur-eventet
+        }
     });
 
     product.querySelector(".removeItem").addEventListener("click", ()=>{removeProduct(namn)});
@@ -100,12 +113,15 @@ function minus(product, namn) {
 
 function updateFromInput(product, namn){
     let input = product.querySelector("input");
-    let value = input.value.replace(/[^\d]/g, ''); // Ta bort alla icke-siffror
+    let value = input.value;
     
-    // Konvertera till nummer och validera
-    value = parseInt(value) || 1; // Om parsing misslyckas, använd 1
+    // Om värdet är ogiltigt (tomt eller 0), sätt det till 1
+    if (!value || parseInt(value) === 0) {
+        value = '1';
+    }
     
-    if (value < 1) value = 1;
+    value = parseInt(value);
+    
     if (value > 50) {
         value = 50;
         alert("Max antal per vara är 50 st");
