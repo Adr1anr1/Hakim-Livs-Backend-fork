@@ -121,11 +121,20 @@ import { productList } from "../../tempTestData/products.js";
            }</p></div>
          </div>
        </div>
-       <div class="row"><p class="bold">Innehållsförteckning</p><p>${
-         product.innehallsforteckning
-       }</p></div>
-       ${product.naringsvarde ? `<div><p class="bold">Näringsvärde</p><p>${product.naringsvarde}</p></div>` : ''}
      </div>
+     <div class="column">
+       <p class="bold">Innehållsförteckning</p>
+       <div class="row">
+         <p>${product.innehallsforteckning}</p>
+       </div>
+     </div>
+     ${product.naringsvarde ? `
+     <div class="column">
+       <p class="bold">Näringsvärde</p>
+       <div class="row">
+         <p>${product.naringsvarde}</p>
+       </div>
+     </div>` : ''}
    `;
  
    popupWindow.querySelector(".cartAdd").addEventListener("click", () => {
