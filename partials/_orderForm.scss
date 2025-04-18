@@ -18,21 +18,38 @@
   }
   .background {
     padding: 40px 60px;
+    padding-bottom: 60px;
     max-width: 1200px;
     width: 90%;
     max-height: 90vh;
-    overflow: hidden;
+    overflow-y: auto;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 60px;
+    justify-content: flex-start;
+    gap: 40px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     @media (max-width: 1020px) {
       max-width: 540px;
+      padding: 30px 30px;
+      padding-bottom: 50px;
       box-sizing: border-box;
+    }
+    
+    @media (max-height: 750px) {
+      max-height: 95vh;
+      padding: 25px 30px;
+      padding-bottom: 40px;
+      gap: 30px;
+    }
+    
+    @media (max-width: 600px) {
+      padding: 25px 20px;
+      padding-bottom: 40px;
+      width: 95%;
+      gap: 30px;
     }
 
     &.red {
@@ -85,8 +102,11 @@
       flex-wrap: nowrap;
       justify-content: space-between;
       width: 100%;
-      overflow-y: auto;
-      max-height: 80vh;
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 30px;
+      }
 
       .orderHeading,
       .deliveryTitle {
@@ -324,6 +344,25 @@
         box-shadow: 0px 0px 0px #001e62;
         transform: translate(4px, 4px);
       }
+    }
+
+    // Anpassa utseendet på scrollbaren
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(240, 240, 240, 0.5);
+      border-radius: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 30, 98, 0.4);
+      border-radius: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 30, 98, 0.6);
     }
   }
 }
