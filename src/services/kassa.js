@@ -18,7 +18,7 @@ function printProducts(namn, bild, amount){
     <p>${namn}</p>
     <div class="row">
         <button class="minus">-</button>
-        <input type="number" value="${amount}">
+        <input type="number" value="${amount}" max="50">
         <button class="plus">+</button>
     </div>
     <p class="productsPrice"></p>
@@ -47,6 +47,11 @@ function updateAmount(product, namn, change) {
         productToUpdate.amount = 1;
     }
 
+    if (productToUpdate.amount > 50) {
+        alert("Max tillåtna köp på denna vara är 50 st");
+        productToUpdate.amount = 50;
+    }
+
     sessionStorage.setItem('cart', JSON.stringify(products));
 
     // Update input field
@@ -71,6 +76,10 @@ function updateFromInput(product, namn){
     let value = parseInt(product.querySelector("input").value);
     if (value < 1) {
         value = 1;
+    }
+    if (value > 50) {
+        alert("Max tillåtna köp på denna vara är 50 st");
+        value = 50;
     }
     
     // Update the amount in sessionStorage
