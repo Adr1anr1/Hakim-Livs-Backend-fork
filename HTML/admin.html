@@ -6,6 +6,16 @@
     <title>Hakim Livs</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../style.css" />
+    <script>
+      // Kontrollera om JWT-token finns i sessionStorage
+      window.addEventListener('DOMContentLoaded', function() {
+        const token = sessionStorage.getItem('jwt');
+        if (!token) {
+          // Om token inte finns, omdirigera till inloggningssidan
+          window.location.href = './login.html';
+        }
+      });
+    </script>
   </head>
   <body class="admin-page">
 
