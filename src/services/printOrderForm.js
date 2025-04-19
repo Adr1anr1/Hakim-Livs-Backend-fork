@@ -54,6 +54,13 @@ export function printOrderForm() {
       orderSuccessDiv.append(thanksTitle, payment, deliver);
       document.querySelector(".background").append(orderSuccessDiv);
       reloadCart();
+      
+      const closeBtn = document.querySelector(".closeBtn");
+      if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+          window.location.href = "index.html";
+        }, { once: true });
+      }
     }
   });
   const background = document.createElement("div");
