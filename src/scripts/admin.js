@@ -81,12 +81,9 @@ export function printProductsAdminpage() {
     },
     {
       label: "Jämförelsepris:",
-      type: "number",
+      type: "text",
       id: "compare",
       name: "compare",
-      step: "0.01",
-      min: "0.01",
-      max: "9999",
     },
     { label: "Leverantör:", id: "supplier", name: "supplier" },
     { 
@@ -313,11 +310,7 @@ editBtn.addEventListener("click", () => {
   document.getElementById("brand").value = product.varumarke?.namn || "";
   document.getElementById("content").value =
     product.innehallsforteckning || "";
-  document.getElementById("compare").value = product.jamforpris
-    ? parseFloat(
-        String(product.jamforpris).replace(" kr/kg", "").replace(",", ".")
-      )
-    : "";
+  document.getElementById("compare").value = product.jamforpris || "";
   document.getElementById("image").value = product.bild;
   document.getElementById("supplier").value =
     product.leverantor?.namn || "";
