@@ -181,7 +181,7 @@ const printproductsAddEventlisteners = () => {
       mangd: document.getElementById("ammount").value,
       varumarke: document.getElementById("brand").value,
       innehallsforteckning: document.getElementById("content").value,
-      jamforpris: `${document.getElementById("compare").value} kr/kg`,
+      jamforpris: document.getElementById("compare").value,
       leverantor: document.getElementById("supplier").value,
       bild: document.getElementById("image").value,
     };
