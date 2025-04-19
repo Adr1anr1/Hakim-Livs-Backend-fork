@@ -73,11 +73,7 @@ export function showProductsAdmin(products) {
       document.getElementById("brand").value = product.varumarke?.namn || "";
       document.getElementById("content").value =
         product.innehallsforteckning || "";
-      document.getElementById("compare").value = product.jamforpris
-        ? parseFloat(
-            String(product.jamforpris).replace(" kr/kg", "").replace(",", ".")
-          )
-        : "";
+      document.getElementById("compare").value = product.jamforpris || "";
       document.getElementById("image").value = product.bild;
       document.getElementById("supplier").value =
         product.leverantor?.namn || "";
