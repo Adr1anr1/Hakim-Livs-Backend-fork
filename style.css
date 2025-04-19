@@ -635,6 +635,17 @@ div.marginTB {
   font-weight: 600;
   box-shadow: 0 0 0 1px #4346e0;
 }
+.side-nav .nav-section ul li a.all-categories {
+  font-weight: 600;
+  color: #4346e0;
+  border-bottom: 1px solid #E0E4EA;
+  margin-bottom: 5px;
+  padding-bottom: 8px;
+}
+.side-nav .nav-section ul li a.all-categories:hover {
+  background-color: #F3F5F8;
+  color: #011e62;
+}
 
 @media screen and (max-width: 768px) {
   #addProductsForm {
